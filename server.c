@@ -28,14 +28,18 @@ int main() {
 
   listen(listenfd, 10);
 
-  connfd = accept(listenfd, (struct sockaddr*)NULL, NULL);
+  while(1) {
+    connfd = accept(listenfd, (struct sockaddr*)NULL, NULL);
+    printf("connfd: %i\n", connfd);
 
-  //ticks = time(NULL);
-  //snprintf(sendBuff, sizeof(sendBuff), "%.24s\r\n", ctime(&ticks));
-  strncpy(sendBuff, "Eita, arretado\n", 1025);
-  write(connfd, sendBuff, strlen(sendBuff));
+    //ticks = time(NULL);
+    //snprintf(sendBuff, sizeof(sendBuff), "%.24s\r\n", ctime(&ticks));
+    strncpy(sendBuff, "Eita, arretado\n", 1025);
+    write(connfd, sendBuff, strlen(sendBuff));
 
-  close(connfd);
+    close(connfd);
+    sleep(1);
+  }
 
   return 0;
 }
